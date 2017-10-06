@@ -1,7 +1,9 @@
-﻿
-
-'''
-Spicy jalapeno bacon ipsum dolor amet ball tip capicola meatloaf beef ribs, ham hock biltong shank pork filet mignon sirloin turducken bacon ground round. T-bone jerky pork loin capicola ground round rump salami tri-tip filet mignon tongue pancetta pork chop. Venison flank swine ham hock landjaeger, doner meatloaf jowl ribeye salami t-bone. Pork burgdoggen strip steak turkey, pancetta tongue meatloaf brisket cupim chuck filet mignon pastrami flank bacon beef ribs. Pancetta salami tri-tip, meatball t-bone prosciutto burgdoggen jowl leberkas kevin.
+﻿'''
+FIL IN THE BLANKS by Jesuarva.
+This game amis to:
+	-> Auto pick up and select randomly words form the paragraph at the start of a game.
+	-> Allow user to selct Level
+	-> Allow user to select a number of lives (No greater than the numbers of words to guess)
 '''
 # VARIABLES
 welcome_message = '''
@@ -41,8 +43,11 @@ def assign_words(level, words):
 	# print level_selected
 	return ''
 def level_selected():
-	level = raw_input('''	
+	level = ''
+	while level not in ['easy', 'medium', 'hard']:
+		level = raw_input('''	
 	Seletc a level. Please type one of the following:
+	(type it as it is in the list, please)
 	-> easy
 	-> medium
 	-> hard
@@ -75,7 +80,7 @@ def continue_playing(lives):
 	if lives > 0:
 		return True
 	return False
-def prompt_user(lives, guessed_words, words):
+def prompt_user(lives, guessed_words):
 	'''Get guessed word from user'''
 	'''Include a message warning the number of lives left'''
 	print '''
@@ -96,7 +101,7 @@ def is_winner(guessed_words, words):
 def play_game(list_of_guessed_words, guessed_words, lives, words):
 	while continue_playing(lives):
 		print_paragraph()
-		prompt_user(lives, guessed_words, words)
+		prompt_user(lives, guessed_words)
 		if guessed_word_is_correct(guessed_words) == False:
 			lives -= 1
 		else:

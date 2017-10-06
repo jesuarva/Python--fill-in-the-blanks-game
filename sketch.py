@@ -97,4 +97,4 @@ guessed_words = 0
 print 'Type your guessed word for ___'+str(guessed_words+1)+'___ :'
 
 ho = -1
-print ho
+print True or False
