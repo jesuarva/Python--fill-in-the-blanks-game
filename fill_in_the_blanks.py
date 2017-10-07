@@ -42,6 +42,27 @@ def assign_words(level, words):
 	select_number_words(set_of_words, words)
 	# print level_selected
 	return ''
+# def live():
+# 	'''Randomly asign number of lives
+# 		Number no greater than the number of words to guess'''
+# 	maximum = len(words)
+# 	lives = random.randint(1,maximum+1)
+# 	return lives
+def live():
+	'''
+	Allow user to select the number of lives.
+	This function call to itself if not correct input form user.'''
+	lives = 0
+	maximum = len(words)
+	print '''	Selec a number of lives for level "'''+level+'''""
+	MAXIMIM ALLOWED LIVES: '''+str(maximum)
+	lives = raw_input('''	''')
+	if int(lives) not in range(1,maximum+1):
+		print '''
+	Oops, it seems you are so ambitious...
+	Fit in the allowed maximum lives to continue...'''
+		lives = live()
+	return int(lives)
 def level_selected():
 	level = ''
 	while level not in ['easy', 'medium', 'hard']:
@@ -66,15 +87,9 @@ def print_paragraph():
 		paragraph_to_print = list_of_guessed_words[index].join(split)
 		index += 1
 	print '''
-*-------------------------------------------------------*
+ *-------------------------------------------------------*
 		PARAGRAPH TO FILL IN THE BLANKS
-'''+paragraph_to_print
-def live():
-	'''Allow user to select the number of lives'''
-	lives = raw_input('''
-	Selec a number of lives for your game
-	''')
-	return int(lives)
+ '''+paragraph_to_print
 def continue_playing(lives):
 	'''while lives > 0 -> continue playing'''
 	if lives > 0:
@@ -141,3 +156,5 @@ print play_game(list_of_guessed_words, guessed_words, lives, words)
 # while continue_playing(lives) == False and guessed_words == 0:
 # 	print 'seems to work'
 # 	continue_playing = True
+# words = [1,2,3,4]
+# print live()
